@@ -52,5 +52,4 @@ hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 [bundles]
 androidx = ["androidx-core-ktx", "androidx-appcompat", "androidx-constraintlayout", "androidx-recyclerview"]
 room = ["room-runtime"]
-hilt = ["hilt-android"]
 testing = ["junit", "androidx-test-core-ktx", "androidx-test-ext-junit-ktx", "androidx-test-rules", "androidx-test-espresso-core"]
