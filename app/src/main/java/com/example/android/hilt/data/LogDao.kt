@@ -20,6 +20,8 @@ import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 
 /**
  * Data access object to query the database.
@@ -40,5 +42,5 @@ interface LogDao {
     fun selectAllLogsCursor(): Cursor
 
     @Query("SELECT * FROM logs WHERE id = :id")
-    fun selectLogById(id: Long): Cursor?
+    fun selectLogById(id: Long): Cursor
 }

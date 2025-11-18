@@ -14,27 +14,15 @@
  * limitations under the License.
  */
 
-buildscript {
-    ext.kotlin_version = '1.6.20'
-    ext.hilt_version = '2.40.1'
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.hilt.android) apply false
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register<Delete>("clean") {
+    delete(layout.buildDirectory)
 }

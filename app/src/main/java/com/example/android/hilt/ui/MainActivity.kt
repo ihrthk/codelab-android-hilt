@@ -17,8 +17,8 @@
 package com.example.android.hilt.ui
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import com.example.android.hilt.LogApplication
 import com.example.android.hilt.R
 import com.example.android.hilt.navigator.AppNavigator
 import com.example.android.hilt.navigator.Screens
@@ -43,13 +43,19 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             navigator.navigateTo(Screens.BUTTONS)
         }
-    }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        if (supportFragmentManager.backStackEntryCount == 0) {
-            finish()
-        }
+        // 设置返回按钮回调
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (supportFragmentManager.backStackEntryCount == 0) {
+                    finish()
+                } else {
+                    // 如果有返回栈，则执行默认的返回操作
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
+                }
+            }
+        })
     }
 }
