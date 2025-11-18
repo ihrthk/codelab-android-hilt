@@ -40,5 +40,5 @@ interface LogDao {
     fun selectAllLogsCursor(): Cursor
 
     @Query("SELECT * FROM logs WHERE id = :id")
-    fun selectLogById(id: Long): Cursor?
+    fun selectLogById(id: Long): Cursor
 }

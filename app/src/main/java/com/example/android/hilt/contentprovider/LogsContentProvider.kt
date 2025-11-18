@@ -79,12 +79,12 @@ class LogsContentProvider: ContentProvider() {
             val appContext = context?.applicationContext ?: throw IllegalStateException()
             val logDao: LogDao = getLogDao(appContext)
 
-            val cursor: Cursor? = if (code == CODE_LOGS_DIR) {
+            val cursor: Cursor = if (code == CODE_LOGS_DIR) {
                 logDao.selectAllLogsCursor()
             } else {
                 logDao.selectLogById(ContentUris.parseId(uri))
             }
-            cursor?.setNotificationUri(appContext.contentResolver, uri)
+            cursor.setNotificationUri(appContext.contentResolver, uri)
             cursor
         } else {
             throw IllegalArgumentException("Unknown URI: $uri")
